@@ -8,6 +8,7 @@ const DataContextProvider = (props) => {
     const [data, setData] = useState(null);
     const [chosenSeatsNumber, setChosenSeatsNumber] = useState(null);
     const [isChecked, setIsChecked] = useState(false);
+    const [doesSelectedNumberMatch, setDoesSelectedNumberMatch] = useState(true);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const history = useHistory();
 
@@ -47,9 +48,11 @@ const DataContextProvider = (props) => {
                     } 
                 })
             });
+            setDoesSelectedNumberMatch(true);
             setData(data);
             history.push('/confirmation');
-            
+        } else {
+            setDoesSelectedNumberMatch(false);
         }
     }
 
@@ -97,7 +100,8 @@ const DataContextProvider = (props) => {
         setSelectedSeats,
         handleSelection,
         handleReservation,
-        handleReturn
+        handleReturn,
+        doesSelectedNumberMatch
         }
 
     return (
